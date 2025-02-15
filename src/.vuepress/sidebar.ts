@@ -15,7 +15,7 @@ export default sidebar({
    // Java学习小记的侧边栏
    "/java/": [
     {
-      text: "Java学习小记",
+      text: "Java面试准备",
       prefix: "/java/",
       link: "/java/javalearn.html",
       children: [
