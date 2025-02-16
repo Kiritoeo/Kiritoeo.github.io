@@ -84,6 +84,9 @@ export default hopeTheme({
         },
       },
     ],
+    math: {
+      type: "katex", // 或 'mathjax'
+    },
     sub: true,
     sup: true,
     tabs: true,
