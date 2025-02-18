@@ -36,8 +36,8 @@ export default sidebar({
         link: "/leetcode/leetcodenotes.html",
         children: [
           {
-            text: "数组",
-            link: "shuzu.html",
+            text: "Leetcode1.两数之和",
+            link: "1.html",
           },
         ],
         collapsible: false,
