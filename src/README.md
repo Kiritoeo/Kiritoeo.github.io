@@ -3,7 +3,8 @@ home: true
 layout: BlogHome
 icon: house
 title: 博客主页
-heroImage: /logo.svg
+heroImage: /me.png
+bgImage: /bgImage.jpg
 heroText: 特卡波的个人博客
 heroFullScreen: true
 tagline: 感谢平凡的，软弱的，愿意改变也有所坚持的自己

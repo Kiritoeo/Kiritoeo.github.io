@@ -7,7 +7,7 @@ export default hopeTheme({
   hostname: "https://mister-hope.github.io",
 
   author: {
-    name: "Kiritoeo",
+    name: "Tekapo",
     url: "https://github.com/Kiritoeo",
   },
 
@@ -31,6 +31,7 @@ export default hopeTheme({
   blog: {
     description: "高高兴兴去战斗，去赴宴，不做忧郁的人，不做空想的人，准备应付至难之事，就像去赴宴一样，要健康而完好。",
     intro: "/intro.html",
+    avatar:"/me.png",
     medias: {
       BiliBili: "https://space.bilibili.com/408822620?spm_id_from=333.1007.0.0",
       GitHub: "https://github.com/Kiritoeo",
