@@ -632,7 +632,7 @@ public void playSound(Animal animal) {
   - 但是这个方法经常被各种类重写。例如 String 类重写 `equals()` 方法，以便它可以比较两个字符串的具体内容是否一样。
 
 ---
-### ### :heart_on_fire:为什么重写 equals() 方法后必须要重写 hashCode() 方法？
+### :heart_on_fire:为什么重写 equals() 方法后必须要重写 hashCode() 方法？
 - 主要是为了遵守 Java 对象一致性的约定，确保依赖哈希码的集合类如 HashMap、HashSet 能够正常工作。
 - 假如重写了 equals() 方法之后没有重写 HashCode() 方法，那么被 equals() 方法认为相同的两个对象可能会有不同的哈希码。因为在超类 Object 类中的 HashCode() 方法的默认实现中，不同的对象的默认哈希码大概率是不一样的。
 
