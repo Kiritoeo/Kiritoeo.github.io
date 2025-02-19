@@ -583,5 +583,111 @@ public void playSound(Animal animal) {
 - 静态方法：`不能重写静态方法`，但`可以重载静态方法`。
 - 绑定机制：重写是在`运行时动态绑定`，而重载是在`编译时根据参数类型调用`。
 ---
-### :heart_on_fire:static关键字修饰的对象以及作用？
-总的来说，static关键字方便在没有创建对象的情况下进行调用，包括变量和方法，也就是说可以通过类名直接调用修饰类的成员变量和成员方法。
+### :heart_on_fire:static 关键字修饰的对象以及作用？
+- 首先来说，static 关键字可以用来修饰`变量`、`方法`、`代码块`和`内部类`。
+- 被 static 关键字修饰的变量和方法叫称为`静态变量和静态方法`，或者叫类变量、类方法，在`层级上属于类`，而`不属于类的任何一个变量`，可以通过类名直接访问被 static 修饰的变量和方法。
+- 被 static 修饰的变量，只在`类加载时`获取一次内存，存放在`堆区`，因此静态变量很节省内存空间。
+- 被 static 包裹起来的代码段称为`静态代码块`，在类加载的时候，静态代码块中的内容在 main 方法调用之前就会执行，在实际的项目开发中常用来`加载配置文件`到内存中。
+- 被 static 修饰的内部类称为静态内部类，静态内部类`与外部类相关`但`独立于外部类实例`。
+  静态内部类`不需要依赖外部类的实例对象`即可直接创建。这意味着无需实例化外部类，即可直接通过 `外部类名.内部类名` 访问静态内部类。
+  这种特性使其适用于`工具类或辅助类`的封装，与`外部类逻辑相关但功能独立`。
+
+总的来说，static 关键字`方便在没有创建对象的情况下`对`变量或者方法`进行调用，也就是说可以通过类名直接调用静态类的成员变量和成员方法。
+
+---
+### :heart_on_fire:final 关键字的作用？
+首先 final 关键字可用来修饰类、变量以及方法。
+`
+- **修饰类的时候**，表示这个类`不能再被继承`，例如String类、Integer类以及其他的包装器类，它们都是被 final 修饰的。
+- **修饰变量的时候**，表示这个`变量的值一旦被初始化就不能被修改`。
+  - 变量是基本数据类型的时候，`数值不变`。
+  - 变量是引用数据类型的时候，`引用不变`。即一旦初始化之后，引用不能再指向另一个对象，但是引用指向的对象内容可以改变。
+    ```java
+    final StringBuilder sb =  new StringBuilder("wangchen");
+    sb.append("tekapo");
+    System.out.println(sb); //wangchentekapo
+
+    sb = new StringBuilder("1026"); //编译错误
+    ```
+-  修饰方法的时候，表示这个方法不能被重写。也即是说当一个类继承了某个类，重写那个类中被 final 修饰的方法是不被允许的。
+---
+### :heart_on_fire:final，finally、finalize 有什么区别？
+- final 是修饰符，可以用来修饰`类、变量或者方法`。当修饰类时，表示这个类不能被继承，修饰方法时，表示这个方法不能被重写，修饰变量的时候，表示这个变量的值不能被改变，如果是基本数据类型的变量则是数值不能被改变，如果是引用数据类型的变量，则是引用不能被改变，但是引用指向的对象内容可以改变。
+- finally 是 `Java 异常处理`中的一部分，用来创建 try 块后的 finally 块。无论 try 块中是否捕获异常，finally 块中的代码总是会执行。finally 块常用来`释放资源`，例如`关闭文件或者数据库连接`。
+- finalize 是 `Object` 类中的一个方法，用于`在垃圾回收器将对象从内存中清理出去之前`做一些必要的清理工作。
+  - finalize 方法在`垃圾回收器准备释放对象占用的内存之前`被自动调用。我们通常不能显式的调用这个方法，通常是由垃圾回收器在合适的时间自动调用。
+---
+### :heart_on_fire:== 和 equals() 方法的区别？
+`==` 和 `equals()` 方法用来比较两个对象。
+- `==` 是用来比较`两个对象的引用`是否相等，即它们`是否指向同一个对象实例`。
+  - 如果是基本数据类型，则 `==` 比较的是`数值是否相等`。
+
+- `equals()` 方法是用来比较`两个对象的内容`是否相等
+  - 默认情况下，这个方法的方法体或者说行为是和 == 相同的，即比较两个对象的引用。例如超类 `Object` 中
+    ```java
+    public boolean equals(Object obj) {
+        return (this == obj);
+    }
+    ```
+  - 但是这个方法经常被各种类重写。例如 String 类重写 `equals()` 方法，以便它可以比较两个字符串的具体内容是否一样。
+
+---
+### ### :heart_on_fire:为什么重写 equals() 方法后必须要重写 hashCode() 方法？
+- 主要是为了遵守 Java 对象一致性的约定，确保依赖哈希码的集合类如 HashMap、HashSet 能够正常工作。
+- 假如重写了 equals() 方法之后没有重写 HashCode() 方法，那么被 equals() 方法认为相同的两个对象可能会有不同的哈希码。因为在超类 Object 类中的 HashCode() 方法的默认实现中，不同的对象的默认哈希码大概率是不一样的。
+
+举个简单的例子：
+```java
+public class Person{
+    int age;
+    String name;
+    //重写了 equals 方法
+    @Override
+    public boolean equals(Object o){
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return age == person.age && Objects.equals(name, person.name);
+    }
+    //没有重写HashCode()方法
+}
+
+public static void main(String[] args) {
+    Person p1 = new Person("Alice", 25);
+    Person p2 = new Person("Alice", 25);
+
+    System.out.println(p1.equals(p2));  // true（equals 正确）
+    System.out.println(p1.hashCode() == p2.hashCode());  // false（违反约定！）
+
+    //后果
+    HashSet<Person> set = new HashSet<>();
+    set.add(p1);
+    set.contains(p2);  // 返回 false，尽管 p1.equals(p2) 为 true
+}
+```
+>照理来说，`set.contains(p2)` 应该返回 `true`，因为 `p1` 和 `p2` 通过重写后的 `equals()` 方法是相等的，但是由于没有重写 `HashCode()` 方法，所以这两个实例的哈希码是不一样的，而 HashSet 又是通过 哈希码定位桶，由于这两个实例的哈希码不一样，因此 `set.contains(p2)` 应该返回 `false`。
+
+---
+### :heart_on_fire: 什么是 hashCode() 方法？
+`hashCode()` 方法是一个定义在 `Object` 类中的`本地方法`，用于`返回对象的哈希码`。
+```java
+    public native int hashCode();
+```
+---
+### :heart_on_fire: 为什么要有 hashCode() 方法？
+`hashCode` ⽅法主要⽤来获取对象的哈希码，哈希码是由对象的`内存地址或者对象的属性`计算出来的，它是⼀个
+int 类型的整数，通常不会重复，因此可以⽤来作为键值对的建，以提⾼查询效率。
+
+---
+### :heart_on_fire: 为什么两个对象的 hashCode 值相等，它们也不一定相同？
+1. 首先需要说明的是，两个`拥有相同哈希码的对象不一定相等`，这是由哈希码的`本质和设计目的`所决定的。
+   - 这种现象被称为`哈希冲突`，哈希冲突的是必然的，从数学上看，`hashCode()` 的输出是 `int` 型，32 位大概约有 42.9 亿种可能。但是对象的可能性是无限的，因此定义域相当于是无限大，而值域却是有限的，必然存在不同的输入拥有相同的输出，因此必然存在不同的对象拥有相同的哈希码。
+2. 在 Java 设计规范下，`哈希码相等`是`对象相等`的`必要不充分条件`，也就是说：
+   - 如果两个对象是相同的，那么他们的哈希码一定是相等的
+   - 但是如果个对象的哈希码是相等的，这两个对象不一定相同
+   - 为了解决哈希冲突，哈希表在处理键的时候，不仅会比较键对象的哈希码，还会使用equals方法来检查键对象是否真正相等。
+---
+### :heart_on_fire: hashCode() 方法和 equals() 方法的关系？
+- `hashCode()` 方法用来获取一个对象的哈希码， `equals()` 方法用来比较两个对象是否完全相同
+- 如果通过 `equals()` 方法比较为 `true` 的两个对象，那么这两个对象的哈希码一定是相等的。
+- 当然，如果通过 `equals()` 方法比较为 `false` 的两个对象，他们的哈希码可能不同也可能相同。
