@@ -773,8 +773,7 @@ Java 创建对象主要有四种方式：
   - length() - 获取字符串的长度（**需要与数组中的 length 变量做区分，编码的时候经常出问题**）
   - **indexOf**(int char / String str) - 返回指定字符或字符串的**首次出现位置**
   - **charAt**(int index) - 返回指定下标的字符
-  - **substring**(int beginIdx, int endIdx)- 返回字符串的⼀个⼦串，从 `beginIndex` 到 `endIndex-
-1 `
+  - **substring**(int beginIdx, int endIdx)- 返回⼀个⼦串，从 `beginIndex` 到 `endIndex-1 `
   - equals(Object obj) - ⽐较两个字符串的内容是否相等。
   - **replace**(char oldChar, char newChar)\replace(CharSequence old, CharSequence new)- 替换字符串中的字符或字符序列。
   - contains(CharSequence s) - 检查字符串是否包含指定的字符序列。
