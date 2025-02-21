@@ -9,7 +9,7 @@ tag:
   - JavaSE
 date: 2025-02-14
 ---
-## 1.Java 概述
+## 1. Java 概述
 ### :heart_on_fire:什么是 Java
 Java 是一门`面向对象的`、`跨平台的`高级编程语言，最早由 Sun 公司的詹姆斯·高斯林团队在 1995 年发行，其设计初衷是为了`简化 C++`并支持`跨平台`的特性。Java 继承吸收了 C++ 中的许多优点、也改进了其许多缺点。 
 
@@ -55,7 +55,7 @@ Java 是一门`面向对象的`、`跨平台的`高级编程语言，最早由 S
 - `解释型语言`是指`解释器`对源代码进行逐行解释，解释成`特定平台的机器码`并执行。
 - 之所以有人说 Java 是“编译与解释并存”的语言，是因为 Java 程序需要`先将 Java 源代码文件编译`字节码文件，`再解释执行`。
 ---
-## 2.Java 基础语法
+## 2. Java 基础语法
 ### :heart_on_fire:Java 有哪些数据类型
 首先要知道的是 Java 的数据类型可以分为基本数据类型和引用数据类型
 - 基本数据类型
@@ -267,7 +267,7 @@ float 占用` 4 字节（32 位）`，按以下规则划分：
     System.out.println("Total price in cents: " + totalInCents);
     ```
 
-## 3.面向对象
+## 3. 面向对象
 ### :heart_on_fire:什么是面向对象？什么是面向过程？有哪些区别？
 - 面向对象编程是一种`编程范式`，或者说是一种`编程思想`。
 - 它通过将`现实世界中的事物`抽象为`对象`来组织代码，将`数据`和`操作数据的方法`捆绑在一起，形成一个独立的实体。
@@ -651,7 +651,7 @@ public void playSound(Animal animal) {
 
     sb = new StringBuilder("1026"); //编译错误
     ```
--  修饰方法的时候，表示这个方法不能被重写。也即是说当一个类继承了某个类，重写那个类中被 final 修饰的方法是不被允许的。
+-  **修饰方法的时候**，表示这个方法不能被重写。也即是说当一个类继承了某个类，重写那个类中被 final 修饰的方法是不被允许的。
 ---
 ### :heart_on_fire:final，finally、finalize 有什么区别？
 - final 是修饰符，可以用来修饰`类、变量或者方法`。当修饰类时，表示这个类不能被继承，修饰方法时，表示这个方法不能被重写，修饰变量的时候，表示这个变量的值不能被改变，如果是基本数据类型的变量则是数值不能被改变，如果是引用数据类型的变量，则是引用不能被改变，但是引用指向的对象内容可以改变。
@@ -754,7 +754,7 @@ Java 是值传递，当一个对象被作为参数传递到方法中的时候，
 Java 创建对象主要有四种方式：
 - 直接通过 new 关键字，调用类的构造方法直接创建
 - 通过反射机制创建，通过 Class 类或者 Constructor 类的 newInstance() 方法。
-- 通过 clone 机制创建，需要实现 cloneable 接口并重写 clone() 方法，默认是浅拷贝。
+- 通过 clone 机制创建，需要实现 Cloneable 接口并重写 clone() 方法，默认是浅拷贝。
 - 通过序列化和反序列化创建，从字节流重建对象，绕过构造方法。
 ---
 ### :heart_on_fire:new 子类的时候，子类和父类的静态代码块，构造方法的执行顺序
@@ -765,4 +765,219 @@ Java 创建对象主要有四种方式：
 
 因此可以总结，静态代码块总是先执行的，其次静态代码块和构造方法均按照父类-子类的顺序执行，另外要注意的是，静态代码块尽在类第一次加载的时候执行。
 
+---
+## 4. String 类
+### String 是 Java 的基本数据类型吗？可以被继承吗？有哪些常用的方法？
+- String 是一个类，属于引用数据类型，并且 String 被 final 所修饰，是不可变类，不能被继承。
+- String 类中有很多操作字符串的方法，我自己比较常用的有几种：
+  - length() - 获取字符串的长度（**需要与数组中的 length 变量做区分，编码的时候经常出问题**）
+  - **indexOf**(int char / String str) - 返回指定字符或字符串的**首次出现位置**
+  - **charAt**(int index) - 返回指定下标的字符
+  - **substring**(int beginIdx, int endIdx)- 返回字符串的⼀个⼦串，从 `beginIndex` 到 `endIndex-
+1 `
+  - equals(Object obj) - ⽐较两个字符串的内容是否相等。
+  - **replace**(char oldChar, char newChar)\replace(CharSequence old, CharSequence new)- 替换字符串中的字符或字符序列。
+  - contains(CharSequence s) - 检查字符串是否包含指定的字符序列。
+
+>*Notice！* 可能会问 String 中的某些方法的代码实现，例如时间复杂度等。需要进一步复习。
+---
+
+### :heart_on_fire: String，StringBuilder，StringBuffer各自的特点，区别，优缺点，应用场景？
+- String：
+  - String 类的对象是不可变的，也就是说，一旦一个 String 对象被创建，它所包含的字符串内容是不可被改变的。
+  - 每次对 String 对象进行修改操作实际上和都会生成一个新的 String 对象，而不是直接修改原有的对象，这会导致额外的内存和性能开销，尤其是在大量字符串操作的情况下。
+- StringBuilder：
+  - 提供了一系列方法来进行字符串的增删改查操作，这些操作都是直接在原有的字符串对象底层数据上进行的，不会生成新的 String 对象。
+  - 相比于 String 类，在进行频繁的字符串操作的时候，它能提供更好的性能，Java 中的字符串连 + 操作实际就是通过 StringBuilder 实现的。
+  - 但是 StringBuilder 不是线程安全的。这意味着没有外部同步的情况下，他不适用于多线程环境。
+- StringBuffer：
+  - StringBuffer 和StringBuilder 类似，但StringBuffer 是线程安全的，它的⽅法前⾯都加了 synchronized 关键
+字。
+
+**使用场景：**
+- String 适合**字符串内容不会改变**的场景，比如作为 HashMap 的 key，或者储存一些长数字标识，例如电话号码。
+- StringBuilder 适合单线程环境下需要频繁修改字符串内容的场景，比如在循环中拼接或者修改字符串。
+- StringBuffer 现在应该不怎么使用了，因为一般不会在多线程场景下去频繁的修改字符串的内容。
+>*Notice！* 可能会问一些场景上的问题。
+- 使用场景：
+  - 为什么适合做 HashMap 的 key? 
+  - HashSet< String > 的去重原理？
+  - 为什么用它来储存电话号码？
+- 性能优化场景
+  - 大量字符串拼接时如何避免内存浪费（预初始化StringBuilder容量）
+  - 避免重复创建String的案例（如日志参数处理）
+---
+
+### :heart_on_fire: `String str1 = new String("abc")` 和` String str2 = "abc"` 的区别？字符串常量池了解吗？`String s = new String("abc")` 创建了⼏个对象？
+**以上两种写法是 Java 中创建字符串的两种方式，一种是通过字面量直接赋值，一种是通过 new 关键字调用构造函数来创建。**
+
+情况 1：直接使用双引号赋值`（String str = "abc"）`
+- JVM 会首先在字符串常量池（String Pool）中查找是否存在内容为 "abc" 的字符串对象。
+  - 不存在：JVM 会在常量池中创建一个新的字符串对象（内容为 "abc"），然后让变量 str 引用这个新对象。
+  - 存在：JVM 会直接让变量 str 引用常量池中的现有对象，不会创建新对象，也就是说，字面量相同的引用始终指向同一个对象。相同内容的字符串在内存中只存在一份，实现对象复用。
+
+情况 2：使用 `new String("abc")` 赋值`String str = new String("abc")`
+- 构造方法 new String("abc") 中的字面量 "abc" 会触发常量池检查：
+  - 不存在：JVM 会先在常量池中创建该对象，然后在堆内存中创建一个新的 String 对象，该对象的内容与常量池中的 "abc" 相同，但内存地址独立。
+  - 存在：直接在堆内存中创建一个新的 String 对象，该对象的内容与常量池中的 "abc" 相同，但内存地址独立。
+```java
+    String s1 = "abc";          // 直接使用常量池
+    String s2 = "abc";          // 复用常量池对象
+    String s3 = new String("abc"); // 强制创建堆对象
+    String s4 = new String("abc"); // 再创建一个堆对象
+
+    System.out.println(s1 == s2); // true（同一常量池对象）
+    System.out.println(s1 == s3); // false（常量池 vs 堆对象）
+    System.out.println(s3 == s4); // false（两个独立堆对象）
+```
+---
+**字符串常量池**
+1. **核心作用是避免重复创建相同值的字符串对象。**
+  - 存储位置：
+  - JDK6及之前：位于永久代（PermGen），有内存上限且容易导致OutOfMemoryError。
+  - JDK7+：**移到堆内存（Heap）**，可动态扩展并受垃圾回收器管理。
+2. 工作原理
+   - 字面量赋值：String s = "abc" 会直接检查并复用常量池中的对象。
+   - **intern()方法**：手动将字符串添加到常量池（若不存在时），并返回池中对象的引用。
+     - 如果当前字符串内容存在于字符串常量池（即 equals()⽅法为 true，也就是内容⼀样），直接返回字符串常量池中的字符串。
+     - 否则，将此 String 对象添加到池中，并返回 String 对象的引⽤。
+3. 为什么要设计字符串常量池：
+   - 常量池的核心目的是**减少重复字符串的内存开销**。例如，**多个String s = "abc"的代码可以复用同一个对象**，避免**堆中生成大量相同值的对象**，从而**提升性能**和**减少GC压力**。
+---
+**`String s = new String("abc")` 创建了⼏个对象？**
+
+这取决于常量池中是否已存在字面量"abc"。
+- 若不存在：类加载时，字面量"abc"会被存入常量池，创建第1个对象。执行new String("abc")时，在堆中生成新对象，创建第2个对象，共创建2个对象。
+- 若已存在：直接复制常量池的"abc"，在堆中生成新对象。共创建1个对象。
+---
+### :heart_on_fire:String 为什么设计成 final 类型，有什么好处？底层是如何实现 String 的不可变性的？
+1. 不可变性使得 String 对象在使用的时候**更加安全**。因为字符串经常用作参数传递给其他的方法，例如网络连接，打开文件等等，如果String 可变，这些方法调用的参数值可能就在不知不觉中改变，从而导致网络连接被篡改，文件被修改等问题。
+2. 不可变的对象因为状态不变，所以**更容易进行缓存和复用**，字符串常量池也基于了这一点特性。当代码中出现相同的字符串字面量的时候，JVM 会确保所有的引用都指向常量池中的同一个对象，实现复用从而节约内存。
+3. 因为 String 的内容不会改变，所以它的**哈希值**也就**固定不变**。这使得 String 对象特别适合作为 HashMap 或 HashSet 等集合的键，因为计算哈希值只需要进⾏⼀次，提⾼了哈希表操作的效率。
+
+**底层实现：**
+- 第⼀，String 类本身被声明为 final，这意味着它不能被继承。这防⽌了⼦类可能通过添加修改⽅法来改变字符串内容的可能性。
+- 第⼆，String 类内部使⽤⼀个**私有的字符数组来存储字符串数据**。这个字符数组在创建字符串时被初始化，之后不允许被改变。
+```java
+    private final char value[];
+```
+- 第三，String 类没有提供任何可以修改其内容的公共⽅法，像 concat 这些看似修改字符串的操作，实际上都是返回⼀个新创建的字符串对象，⽽原始字符串对象保持不变。
+---
+### :heart_on_fire:String 字符串拼接的底层实现？
+- 通过 “+” 操作符拼接（编译期 JVM 会创建 StringBuilder 对象）
+- StringBuilder.append()
+- String.join()
+>*Notice* 需要复习底层的实现
+---
+## 5. Integer 类
+## 6. Object 类
+## 7. 异常处理
+### :heart_on_fire:Java 中，错误和异常的体系是怎么样的？了解多少？
+````markmap
+---
+markmap:
+  colorFreezeLevel: 2
+  maxWidth: 10000
+---
+# `Throwable` 
+
+## `Error`（系统级错误，程序一般无法处理）
+### `VirtualMachineError`
+- `OutOfMemoryError`（内存耗尽）
+- `StackOverflowError`（栈溢出
+### `LinkageError`
+- `NoClassDefFoundError`（类定义缺失）
+- `IncompatibleClassChangeError`（不兼容的类变更）
+### `AssertionError`（断言失败）
+### `AWTError`（严重 AWT 错误，如 GUI 组件崩溃）
+### `IOError`（底层 I/O 错误，如磁盘损坏）  
+
+## `Exception`（程序可处理的异常）
+### `RuntimeException`（Unchecked Exception，编译器不强制处理）
+- `NullPointerException`（空指针）
+- `IndexOutOfBoundsException`（索引越界）
+- `IllegalArgumentException`（非法参数） 
+- `ArithmeticException`（算术错误，如除以0）
+- `ClassCastException`（类型转换错误）
+- `ConcurrentModificationException`（并发修改异常）
+
+### **Checked Exception**（编译器强制要求处理）
+- `IOException`（输入/输出错误）
+    - `FileNotFoundException`（文件未找到）
+    - `EOFException`（文件意外结束）
+- `SQLException`（数据库操作错误） 
+- `ClassNotFoundException`（类未找到）
+- `InterruptedException`（线程被中断）
+````
+Java 中所有的错误和异常都是统一由 Throwable 这个基类来管理的，首先需要说明的是，Java 中的异常和错误继承体系是纯类继承关系。
+- Error 表示 JVM 或者系统级的错误，例如内存耗尽 OOM，SOF错误，程序是无法恢复的，开发者无需捕获处理也无法处理。
+- Exception 表示程序运行中可预见的异常行为，通常可以分为两类
+  - **编译时异常**也叫 Checked Exception，必须显式的处理（*具体如何处理，需要进一步复习*）
+    - 继承自 Exception 类，要么 try-catch，要么 throws。
+    - 通常涉及外部资源问题（如 IOException、SQLException）。
+  - **运行时异常**也就是 RuntimeException，编译器不强制处理，通常可以通过修改代码逻辑来避免。
+    - 继承自 RuntimeException。
+    - 编译器不强制处理（如 NullPointerException、ArrayIndexOutOfBoundsException）。
+    - 通常由代码逻辑错误导致，应通过修复代码解决，而非捕获。
+---
+### :heart_on_fire:写程序的时候，一般怎么处理异常？
+首先需要明确异常的类型。
+- 如果是**运行时异常**，这类异常通常是在程序运行的时候抛出，对于运⾏时异常，Java 编译器不要求必须处理它们（即不需要捕获也不需要声明抛出）。运⾏时异常通常是由程序逻辑错误导致的，如 NullPointerException、IndexOutOfBoundsException 等。
+- 如果是**编译时异常**，那必须要被显式处理（捕获或 throws 声明抛出）。如果⽅法可能抛出某种编译时异常，但没有捕获它（try-catch）或没有在⽅法声明中⽤ throws ⼦句声明它，那么编译将不会通过。例如：IOException、SQLException 等。
+  - 具体来说，遇到这种必须要显式处理的异常，我们有两种方案：
+    - 不捕获处理，直接声明后抛出。
+        ```java
+        public void test() throws Exception {
+            throw new Exception("抛出异常");
+        }
+        ```
+    - 捕获异常，并处理。
+        ```java
+            try {
+            //包含可能会出现异常的代码以及声明异常的⽅法
+        }catch(Exception e) {
+            //捕获异常并进⾏处理
+        }finally {
+            //可选，必执⾏的代码
+        }
+        ```
+    - *Notice：* finally 块中通常用来在异常处理结束之后释放资源，在 Java 7 中，可以通过 try-with-resource 的方式自动释放资源而不用写 finally 块。
+        ```java
+            // try-with-resources 自动关闭资源
+        try (FileReader fr = new FileReader("file.txt")) {
+            // 操作文件
+        } catch (IOException e) {
+            log.error("文件读取失败", e);  // 记录日志
+            throw new BusinessException("业务异常", e);  // 封装自定义异常
+        }
+        ```
+---
+### :heart_on_fire:处理异常的时候，catch 和 finally 的异常可以同时抛出吗？
+可以，但需要注意覆盖问题：
+- 如果 catch 和 finally 块都抛出异常，**最终抛出的异常是 finally 中的异常，catch 的异常会被覆盖**。
+    - 在 finally 中避免直接抛出异常，优先处理资源释放等操作。
+    - 若必须抛出，可**保留原始异常**（Java 7+ 支持 addSuppressed() 方法）。
+        ```java
+            try {
+        // 可能抛出 IOException
+        } catch (IOException e) {
+            throw new BusinessException("业务异常", e);  // 原始异常
+        } finally {
+            try {
+                // 可能抛出 SQLException
+            } catch (SQLException ex) {
+                BusinessException be = new BusinessException("Finally 异常", ex);
+                be.addSuppressed(e);  // 附加原始异常
+                throw be;
+            }
+        }
+        ```
+---
+### :heart_on_fire:return 先执行还是 finally 块先执行？
+首先这个问题，我想是基于 try 或 catch 块中存在 return 语句的时候，才需要考虑的。
+- 如果try 或 catch 块中存在 return 语句，在 finally 块中的代码执行之前，JVM 会计算前面 return 后的**表达式值**并且把结果压入操作数栈，然后执行 finally 块中的代码。
+- 所以如果非要分先后顺序的化，那么 finally 块中的代码会在 **return 表达式计算之后**、**方法实际返回之前**执行。
+- 其次，这个问题还需要考虑到 finally 块中的操作对返回值的影响。
+  - 如果 finally 块中有 return 语句，就比较栓Q了，因为它会覆盖前面 try 或 catch 块中保存的返回值，直接称为最终的结果。
+  - 如果 finally 块中没有 return 语句，则**基本数据类型**或者**不可变对象**的返回值由前面 try 或 catch 块中保存的返回值决定，即使 finally 中修改了相关变量，也不会影响已保存的返回值。但对于**可变对象**，finally中对**对象状态的修改**会生效。
 ---
