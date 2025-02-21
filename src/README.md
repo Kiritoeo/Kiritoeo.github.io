@@ -1,7 +1,7 @@
 ---
 home: true
 layout: BlogHome
-icon: house
+icon: flat-color-icons:home
 title: 博客主页
 heroImage: /me.png
 bgImage: /bgImage.jpg

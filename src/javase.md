@@ -1,5 +1,5 @@
 ---
-title: 记录 Java 基础部分的重要问题
+title: Java 基础
 breadcrumb: false
 permalink: /java/javase.html  # 添加此行
 # order: 1

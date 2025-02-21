@@ -43,24 +43,39 @@ export default sidebar({
         collapsible: false,
       },
     ],
-
-        // 使用教程的侧边栏
-        "/tutorial/": [
+    // CuriosityNotes的侧边栏
+    "/Thougths/": [
+      {
+        text: "CuriosityNotes",
+        prefix: "/Thougths/",
+        link: "/Thougths/myThoughts.html",
+        children: [
           {
-            text: "使用教程",
-            prefix: "/tutorial/",
-            link: "/tutorial/tutorial.html",
-            children: [
-              {
-                text: "Markdown",
-                link: "markdown.html",
-              },
-              {
-                text: "加密",
-                link: "encrypt.html",
-              },
-            ],
-            collapsible: false,
+            text: "面向对象",
+            link: "toObject.html",
           },
         ],
+        collapsible: false,
+      },
+    ],
+
+        // 使用教程的侧边栏
+        // "/tutorial/": [
+        //   {
+        //     text: "使用教程",
+        //     prefix: "/tutorial/",
+        //     link: "/tutorial/tutorial.html",
+        //     children: [
+        //       {
+        //         text: "Markdown",
+        //         link: "markdown.html",
+        //       },
+        //       {
+        //         text: "加密",
+        //         link: "encrypt.html",
+        //       },
+        //     ],
+        //     collapsible: false,
+        //   },
+        // ],
 });
