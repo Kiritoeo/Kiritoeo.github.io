@@ -46,6 +46,10 @@ export default hopeTheme({
         hint: "QQ's birthday",
         password: "0516",
       },
+      "/java/javase.html": {
+        hint: "would be public after 2026.3",
+        password: "0516",
+      },
     },
   },
 
