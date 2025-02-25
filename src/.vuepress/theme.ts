@@ -46,12 +46,20 @@ export default hopeTheme({
         hint: "QQ's birthday",
         password: "0516",
       },
+      "/java/javalearn.html": {
+        hint: "would be public after 2025.5",
+        password: "0516",
+      },
       "/java/javase.html": {
-        hint: "would be public after 2026.3",
+        hint: "would be public after 2025.5",
         password: "0516",
       },
       "/leetcode/leetcodenotes.html":{
-        hint: "would be public after 2026.3",
+        hint: "would be public after 2026.5",
+        password: "0516",
+      },
+      "/leetcode/1.html":{
+        hint: "would be public after 2026.5",
         password: "0516",
       }
     },
