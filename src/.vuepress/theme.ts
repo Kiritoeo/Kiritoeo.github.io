@@ -50,6 +50,10 @@ export default hopeTheme({
         hint: "would be public after 2026.3",
         password: "0516",
       },
+      "/leetcode/leetcodenotes.html":{
+        hint: "would be public after 2026.3",
+        password: "0516",
+      }
     },
   },
 
